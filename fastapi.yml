@@ -1,0 +1,35 @@
+#manifest
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loken-deployment
+spec:
+  selector:
+    matchLabels:
+      app: loken-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: loken-server
+    spec:
+      containers:
+      - name: loken-container
+        #image: gcr.io/tensorflow-serving/resnet 
+        image: docker.io/rodrigomencias/milkpredict:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: loken-service
+  name: loken-service
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: loken-server
+  type: LoadBalancer

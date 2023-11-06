@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 origins = ["*"]
 
-app = FastAPI(title = 'Heart Disease Prediction')
+app = FastAPI(title = 'Milk Prediction')
 
 app.add_middleware(
    CORSMiddleware,
@@ -17,16 +17,20 @@ app.add_middleware(
    allow_headers=["*"]
 )
 
-model = load(pathlib.Path('model/flight-price-v1.joblib'))
+model = load(pathlib.Path('model/milk_prediction-v1.joblib'))
 
 class InputData(BaseModel):
-    duration:float=2.17
-    days_left:int=2
-    price:int=200
+    pH:float=6.6
+    Temprature:int=70
+    Taste:int=1
+    Odor:int=1
+    Fat :int=1
+    Turbidity:int=1
+    Colour:int=255
     
 
 class OutputData(BaseModel):
-    score:float=0.80318881046519
+    score:float=0.9952830188679245
 
 @app.post('/score', response_model = OutputData)
 def score(data:InputData):

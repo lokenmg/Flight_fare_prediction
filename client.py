@@ -1,8 +1,12 @@
 import requests
 body = {
-    "duration": 4.17,
-    "days_left": 1,
-    "price": 5
+    "pH":3.5,
+    "Temprature":70,
+    "Taste":0,
+    "Odor":1,
+    "Fat" :0,
+    "Turbidity":1,
+    "Colour":246
     }
 response = requests.post(url = 'http://127.0.0.1:8000/score',
               json = body)
