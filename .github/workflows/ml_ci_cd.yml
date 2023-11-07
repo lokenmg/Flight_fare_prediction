@@ -17,6 +17,12 @@ jobs:
       run: pip install -r requirements.txt
     - name: train model
       run: python model/train.py
+    #descargar dataset
+    - name: download dataset
+      run: wget -O data/heart_disease.csv ${{github.event.client_payload.dataseturl}}
+    - name: cat dataset
+      run: cat data/heart_disease.csv
+
     - name: docker build
       run: docker build -t ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.sha}} .
     - name: show images
