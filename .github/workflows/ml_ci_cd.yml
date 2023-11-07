@@ -15,13 +15,14 @@ jobs:
       run: python --version
     - name: pip install
       run: pip install -r requirements.txt
-    - name: train model
-      run: python model/train.py
-    #descargar dataset
+      #descargar dataset
     - name: download dataset
       run: wget -O data/milk.csv ${{github.event.client_payload.dataseturl}}
     - name: cat dataset
       run: cat data/milk.csv
+      
+    - name: train model
+      run: python model/train.py
 
     - name: docker build
       run: docker build -t ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.event.client_payload.sha}} .
