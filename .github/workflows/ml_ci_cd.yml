@@ -19,7 +19,7 @@ jobs:
       run: python model/train.py
     #descargar dataset
     - name: download dataset
-      run: wget -O data/heart_disease.csv ${{github.event.client_payload.dataseturl}}
+      run: wget -O data/milk.csv ${{github.event.client_payload.dataseturl}}
     - name: cat dataset
       run: cat data/milk.csv
 
