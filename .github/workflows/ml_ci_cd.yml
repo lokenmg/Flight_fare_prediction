@@ -21,7 +21,7 @@ jobs:
     - name: download dataset
       run: wget -O data/heart_disease.csv ${{github.event.client_payload.dataseturl}}
     - name: cat dataset
-      run: cat data/heart_disease.csv
+      run: cat data/milk.csv
 
     - name: docker build
       run: docker build -t ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.event.client_payload.sha}} .
